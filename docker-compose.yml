@@ -21,7 +21,7 @@ services:
 
   db:
     image: mysql:8.0.33
-    container_name: app-db
+    container_name: app-undecided-game-project-db
     volumes:
       - db-data:/var/lib/mysql
       - ./docker/db/my.cnf:/etc/mysql/conf.d/my.cnf:ro # ※Windows環境でDocker環境を扱う場合には、このmy.cnfファイルを「読み取り専用」にWindows側からしておく必要がある。
