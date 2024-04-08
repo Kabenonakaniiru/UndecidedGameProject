@@ -26,6 +26,7 @@ RUN dnf install -y \
   # 開発用ライブラリ追加
   git tree which \
   # mysqlクライアント(see: https://dev.classmethod.jp/articles/install-mysql-client-to-amazon-linux-2023/)
+  # https://dev.mysql.com/downloads/repo/yum/ が最新
   && dnf localinstall -y https://dev.mysql.com/get/mysql80-community-release-el9-5.noarch.rpm \
   && dnf install -y mysql mysql-community-devel \
   && dnf clean all
