@@ -10,7 +10,7 @@ services:
         BUNDLER_VERSION: 2.5.7
         DOCKER_USER: kabe
         DOCKER_USER_PASS: user_pass
-        DEFAULT_BRANCH: main
+        DEFAULT_BRANCH: develop
     ports:
       - 50003:3000
     depends_on:
