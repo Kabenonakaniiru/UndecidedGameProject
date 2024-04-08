@@ -1,0 +1,40 @@
+services:
+  app:
+    environment:
+      LANG: ja_JP.UTF-8
+      TZ: 'Asia/Tokyo'
+    build:
+      dockerfile: docker/Dockerfile
+      args:
+        RUBY_VERSION: 3.3.0
+        BUNDLER_VERSION: 2.5.7
+        DOCKER_USER: kabe
+        DOCKER_USER_PASS: user_pass
+        DEFAULT_BRANCH: main
+    ports:
+      - 50003:3000
+    depends_on:
+      - db
+    networks:
+      - app-network
+    tty: true
+
+  db:
+    image: mysql:8.0.33
+    container_name: app-db
+    volumes:
+      - db-data:/var/lib/mysql
+      - ./docker/db/my.cnf:/etc/mysql/conf.d/my.cnf:ro # ※Windows環境でDocker環境を扱う場合には、このmy.cnfファイルを「読み取り専用」にWindows側からしておく必要がある。
+    # TODO: 後でユーザーは分けること。collation指定など、https://hub.docker.com/_/mysqlを見て指定すること。
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      TZ: "Asia/Tokyo"
+    restart: always
+    networks:
+      - app-network
+    ports:
+      - 50004:3306
+networks:
+  app-network:
+volumes:
+  db-data:
