@@ -73,3 +73,7 @@ RUN git clone https://github.com/rbenv/rbenv.git ~/.rbenv \
 FROM change_user as dev
 
 EXPOSE 3000
+
+ENV LANG=ja_JP.UTF-8 \
+  TZ='Asia/Tokyo' \
+  RUBYOPT=-EUTF-8
